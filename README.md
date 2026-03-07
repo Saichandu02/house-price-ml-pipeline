@@ -1,21 +1,24 @@
 # House Price ML Pipeline
 
-A fully working end-to-end machine learning pipeline for predicting California house prices, built with Python and scikit-learn.
+A fully working end-to-end machine learning pipeline for predicting California house prices, built with Python, scikit-learn, and an **interactive Streamlit web app**.
 
 ## Project Structure
 
 ```
 house-price-ml-pipeline/
+├── app.py                          # Interactive Streamlit web app
 ├── src/
 │   ├── __init__.py
-│   ├── data_loader.py      # Dataset loading and train/test splitting
-│   ├── preprocessing.py    # Feature scaling via StandardScaler
-│   ├── model.py            # Model training, evaluation, and persistence
-│   ├── visualize.py        # Visualization helpers
-│   └── pipeline.py         # End-to-end orchestrator
+│   ├── data_loader.py              # Dataset loading and train/test splitting
+│   ├── preprocessing.py            # Feature scaling via StandardScaler
+│   ├── model.py                    # Model training, evaluation, and persistence
+│   ├── visualize.py                # Matplotlib visualization helpers
+│   ├── visualize_interactive.py    # Plotly interactive visualization helpers
+│   └── pipeline.py                 # End-to-end CLI orchestrator
 ├── tests/
 │   ├── __init__.py
-│   └── test_pipeline.py    # pytest unit tests
+│   ├── test_pipeline.py            # pytest unit tests for the pipeline
+│   └── test_app.py                 # pytest unit tests for the web app
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -47,7 +50,19 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Run the full pipeline
+### Launch the interactive web app
+
+```bash
+streamlit run app.py
+```
+
+The app opens in your browser and provides three pages:
+
+- **🏠 Predict** — Enter feature values for a California block group and get an instant predicted median house price.
+- **📊 Dashboard** — View model performance metrics (MAE, MSE, RMSE, R²) and interactive Plotly charts for feature importance, predictions vs actual, and residuals.
+- **🔍 Data Explorer** — Browse the dataset, view descriptive statistics, feature distributions, and a correlation heatmap.
+
+### Run the full pipeline (CLI)
 
 ```bash
 python -m src.pipeline

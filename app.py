@@ -2,6 +2,7 @@
 
 import numpy as np
 import pandas as pd
+import plotly.express as px
 import streamlit as st
 
 from src.data_loader import load_data, split_data
@@ -242,8 +243,6 @@ elif page == "🔍 Data Explorer":
     st.subheader("Feature Distributions")
     selected_feature = st.selectbox("Select a feature", FEATURE_NAMES + ["target"])
 
-    import plotly.express as px
-
     fig = px.histogram(
         df,
         x=selected_feature,
@@ -257,8 +256,6 @@ elif page == "🔍 Data Explorer":
     st.divider()
 
     st.subheader("Correlation Heatmap")
-    import plotly.figure_factory as ff
-
     corr = df.corr(numeric_only=True)
     fig_corr = px.imshow(
         corr,
